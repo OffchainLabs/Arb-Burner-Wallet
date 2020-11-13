@@ -1,8 +1,9 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useLayoutEffect, useCallback } from 'react';
 import { Asset } from '@burner-wallet/types';
 import styled from 'styled-components';
 import { toBN } from 'web3-utils';
 import options from '../../options';
+import { networkIdToExplorerRoot } from "../../lib"
 
 const SPEED = 4; // The higher this number is, the slower the balance will refresh
 
@@ -10,6 +11,7 @@ interface BalanceItemProps {
   asset: Asset;
   balance?: string | null;
   growthRate: string;
+  defaultAccount: string;
 }
 
 const BalanceCard = styled.div`
@@ -24,6 +26,7 @@ const BalanceCard = styled.div`
   min-width: 225px;
   background: white;
   margin: ${() => options.balanceStyle === 'stack' ? '4px 0' : '16px 8px'};
+  cursor: pointer;
 `;
 
 const BalanceText = styled.div`
@@ -46,6 +49,10 @@ const Value = styled.div`
 
 const AssetName = styled.div`
   font-size: 16px;
+`;
+const NetworkName = styled.div`
+  font-size: 16px;
+  position: left;
 `;
 
 const Icon = styled.div`
@@ -81,7 +88,7 @@ const getValue = (asset: Asset, balance?: string | null) => {
   }
 };
 
-const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate }) => {
+const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate, defaultAccount }) => {
   const valueDiv = useRef<HTMLDivElement | null>(null);
 
   const value = getValue(asset, balance);
@@ -118,9 +125,16 @@ const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate })
     updateNum();
     return () => void window.cancelAnimationFrame(req);
   }, [balance, asset, growthRate]);
+  const explorerRoot = networkIdToExplorerRoot(asset.network)
+  const handleClick = useCallback(()=>{
+    if (explorerRoot && defaultAccount){
+      window.open(explorerRoot + 'address/' + defaultAccount )
+    }
+    
+  },[explorerRoot, defaultAccount])
 
   return (
-    <BalanceCard>
+    <BalanceCard onClick={handleClick}>
       {asset.icon && (
         <Icon style={{ backgroundImage: `url('${asset.icon}')` }} />
       )}
@@ -131,6 +145,8 @@ const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate })
           ))}
         </Value>
         <AssetName>{asset.name}</AssetName>
+        <NetworkName>{`(${asset.networkName()})`}</NetworkName>
+
       </BalanceText>
     </BalanceCard>
   );

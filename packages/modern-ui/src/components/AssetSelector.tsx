@@ -17,7 +17,8 @@ const Balance = styled.div`
 
 const AssetElement: React.FC<ItemComponentProps<Asset>> = ({ item }) => (
   <AssetElementWrapper>
-    <div>{item.name}</div>
+    <div>{item.id}</div>
+
     <AccountBalance asset={item} render={(data: any/*AccountBalanceData | null*/) => data && (
       <Balance>
         {data.usdBalance ? `$${data.usdBalance}` : data.displayBalance}

@@ -8,6 +8,7 @@ import Button from '../../components/Button';
 import Page from '../../components/Page';
 import LineItem from '../../components/LineItem';
 const { TransactionDetails } = DataProviders;
+import { networkIdToExplorerRoot } from "../../lib"
 
 
 interface MatchParams {
@@ -41,19 +42,21 @@ const ReceiptPage: React.FC<RouteComponentProps<MatchParams> & BurnerContext> = 
           );
         }
         const [asset] = assets.filter((_asset: Asset) => _asset.id === tx.asset);
+        const explorerRoot = networkIdToExplorerRoot(asset.network)
         const amtValue = asset
           ? `${asset.getDisplayValue(tx.value!)} ${asset.name}`
           // @ts-ignore
           : `${tx.displayValue} (unknown asset)`;
         // @ts-ignore
         const date = formatDate(tx.timestamp)
-
         const isSent = defaultAccount.toLowerCase() === tx.from!.toLowerCase();
         return (
           <section>
             <div>
-              <LineItem name={t('From')} value={<Address address={tx.from!} />}/>
-              <LineItem name={t('To')} value={<Address address={tx.to!} />}/>
+              { explorerRoot ? <a href={explorerRoot + "tx/" + match.params.txHash} target="_blank"><LineItem name={t('View in explorer')} value={""}/></a> : null}
+              <br/>
+              <LineItem name={t('From')} value={<Address networkId={asset.network} address={tx.from!} />}/>
+              <LineItem name={t('To')} value={<Address networkId={asset.network} address={tx.to!} />}/>
               <LineItem name={t('Date')} value={date}/>
             </div>
 

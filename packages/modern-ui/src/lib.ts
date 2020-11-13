@@ -16,3 +16,18 @@ export const randomHex = (length: number) => {
   }
   return '0x' + result.substr(0, length);
 };
+
+	
+
+export const networkIdToExplorerRoot =(networkId?: string) =>{
+  switch (networkId) {
+    case "152709604825713":
+       return "https://explorer.offchainlabs.com/#/chain/0xc34fd04e698db75f8381bfa7298e8ae379bfda71/"    
+    case "215728282823301":
+        return "https://explorer.offchainlabs.com/#/chain/0x175c0b09453cbb44fb7f56ba5638c43427aa6a85/"    
+    case "42":
+        return "https://kovan.etherscan.io/"            
+    default:
+      return ""
+  }
+}

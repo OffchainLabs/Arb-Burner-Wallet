@@ -17,7 +17,7 @@ export interface BurnerTheme {
 }
 
 const defaultTheme = {
-  background: '#ededed',
+  background: 'linear-gradient(rgb(0 169 234),rgb(221 238 241))',
   font:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
   titleFont: null,
