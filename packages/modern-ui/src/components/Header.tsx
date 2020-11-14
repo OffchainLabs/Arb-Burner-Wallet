@@ -66,7 +66,7 @@ interface HeaderProps extends BurnerContext {
 const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => (
   <HeaderElement>
     <TitleContainer>
-      <Title>{title || 'Burner Wallet'}</Title>
+      <Title style={{display: "flex"}}>   {title || 'Burner Wallet'}    <img width={35} src={"https://i.ibb.co/3SR5g5g/arburner.png"}/></Title>
       {title && title !== 'Burner Wallet' && (
         <Subtitle>Powered by Burner Wallet</Subtitle>
       )}
