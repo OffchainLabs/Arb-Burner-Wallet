@@ -128,10 +128,12 @@ const { AccountBalance } = DataProviders;
 
 type SendPageProps = BurnerContext & RouteComponentProps<{ to?: string }>;
 
-const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t }) => {
+const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match }) => {
+  const initialAssetId = match.params.assetid
+  const initialAsset = initialAssetId && assets.find((asset)=> initialAssetId.toLowerCase() === asset.id.toLowerCase() )  
   const [to, setTo] = useState(location.state && location.state.to || '');
   const [account, setAccount] = useState<Account | null>(null);
-  const [asset, setAsset] = useState(assets[0]);
+  const [asset, setAsset] = useState(initialAsset || assets[0]);
   const [val, setVal] = useState<{ value: string; maxVal: string | null }>({ value: '0', maxVal: null });
   const [message, setMessage] = useState('');
 

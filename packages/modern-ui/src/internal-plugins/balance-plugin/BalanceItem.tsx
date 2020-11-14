@@ -128,10 +128,10 @@ const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate, d
   const explorerRoot = networkIdToExplorerRoot(asset.network)
   const handleClick = useCallback(()=>{
     if (explorerRoot && defaultAccount){
-      window.open(explorerRoot + 'address/' + defaultAccount )
+      window.location.pathname = "/send/" + asset.id
     }
     
-  },[explorerRoot, defaultAccount])
+  },[asset])
 
   return (
     <BalanceCard onClick={handleClick}>

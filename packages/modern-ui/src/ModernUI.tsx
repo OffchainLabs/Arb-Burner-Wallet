@@ -34,7 +34,7 @@ export default class ModernUI extends BurnerUICore {
       { path: '/activity', component: ActivityPage },
       { path: '/pk', component: PKPage },
       { path: '/receive', component: ReceivePage },
-      { path: '/send', component: SendPage },
+      { path: '/send/:assetid?', component: SendPage },
       { path: '/confirm', component: ConfirmPage },
       { path: '/receipt/:asset/:txHash', component: ReceiptPage },
       { path: '/advanced', component: AdvancedPage },
