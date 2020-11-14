@@ -36,6 +36,7 @@ const BalanceRow: React.FC<PluginElementContext> = ({ defaultAccount, assets }) 
               asset={asset}
               balance={data && data.balance}
               growthRate={(data && data.growthRate) || '0'}
+              defaultAccount={defaultAccount}
             />
           )}
         />
