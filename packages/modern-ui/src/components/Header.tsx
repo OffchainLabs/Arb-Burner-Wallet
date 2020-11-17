@@ -68,7 +68,7 @@ const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => (
     <TitleContainer>
       <Title style={{display: "flex"}}>   {title || 'Burner Wallet'}    <img width={35} src={"https://i.ibb.co/3SR5g5g/arburner.png"}/></Title>
       {title && title !== 'Burner Wallet' && (
-        <Subtitle>Powered by Burner Wallet</Subtitle>
+        <Subtitle>Forked From <a href="https://github.com/burner-wallet/burner-wallet-2" target="_blank">Burner Wallet</a></Subtitle>
       )}
     </TitleContainer>
 
