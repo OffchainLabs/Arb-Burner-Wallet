@@ -7,7 +7,7 @@ import AddressInputField from '../../components/AddressInputField';
 import AssetSelector from '../../components/AssetSelector';
 import Button from '../../components/Button';
 import Page from '../../components/Page';
-
+import { utils } from 'ethers'
 const FormContainer = styled.div`
   flex-direction: column;
   flex: 1;
@@ -194,8 +194,8 @@ const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match
 
                   <MaxButton
                     onClick={() => {
-                      if (data) {
-                        setValue(data.displayMaximumSendableBalance, data.maximumSendableBalance);
+                      if (data) {                        
+                        setValue(utils.formatEther(data.maximumSendableBalance), data.maximumSendableBalance);
                       }
                     }}
                   >

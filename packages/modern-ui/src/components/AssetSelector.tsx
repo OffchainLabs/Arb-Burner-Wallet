@@ -4,7 +4,7 @@ import { Asset, AssetSelectorProps } from '@burner-wallet/types';
 import styled from 'styled-components';
 import Dropdown, { ItemComponentProps } from './Dropdown';
 const { Assets, AccountBalance } = DataProviders;
-
+import { utils } from 'ethers'
 const AssetElementWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -21,7 +21,7 @@ const AssetElement: React.FC<ItemComponentProps<Asset>> = ({ item }) => (
 
     <AccountBalance asset={item} render={(data: any/*AccountBalanceData | null*/) => data && (
       <Balance>
-        {data.usdBalance ? `$${data.usdBalance}` : data.displayBalance}
+        {(+utils.formatEther(data.balance)).toFixed(item.name === "ETH" ? 4: 2)}
       </Balance>
     )} />
   </AssetElementWrapper>

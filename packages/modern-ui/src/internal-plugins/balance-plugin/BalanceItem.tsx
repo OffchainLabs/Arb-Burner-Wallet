@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { toBN } from 'web3-utils';
 import options from '../../options';
 import { networkIdToExplorerRoot } from "../../lib"
+import { ethers, utils } from 'ethers'
 
 const SPEED = 4; // The higher this number is, the slower the balance will refresh
 
@@ -78,14 +79,9 @@ const valueToHTML = (val: string) => {
 const getValue = (asset: Asset, balance?: string | null) => {
   if (!balance) {
     return '-';
-  }
-  try {
-    const usdVal = asset.getUSDValue(balance);
-    return `$${parseFloat(usdVal).toFixed(2)}`;
-  } catch (e) {
-    const displayVal = asset.getDisplayValue(balance);
-    return parseFloat(displayVal).toFixed(2);
-  }
+  }  
+ return  (+utils.formatEther(balance)).toFixed(asset.name === "ETH" ? 4: 2)
+
 };
 
 const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate, defaultAccount }) => {
