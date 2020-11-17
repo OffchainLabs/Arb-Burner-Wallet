@@ -64,7 +64,7 @@ const koveth = new NativeAssetExt({
 
 const arbarbiv2 = new ERC20AssetExt({
     id: 'ARBI_L2(v2)',
-    name: 'ArbTestToken',
+    name: 'ARBI',
     network: '152709604825713',
     address: '0xf36d7a74996e7def7a6bd52b4c2fe64019dada25',
     icon: 'https://offchainlabs.com/af7bc2292c93e5b9edd216461350b1bf.png',
@@ -72,7 +72,7 @@ const arbarbiv2 = new ERC20AssetExt({
 
   const arbarbiv1= new ERC20AssetExt({
     id: 'ARBI_L2(v1)',
-    name: 'ArbTestToken',
+    name: 'ARBI',
     network: '215728282823301',
     address: '0xf36d7a74996e7def7a6bd52b4c2fe64019dada25',
     icon: 'https://offchainlabs.com/af7bc2292c93e5b9edd216461350b1bf.png',
@@ -82,7 +82,7 @@ const arbarbiv2 = new ERC20AssetExt({
 
   const kovarbi= new ERC20AssetExt({
     id: 'ARBI_L1',
-    name: 'ArbTestToken',
+    name: 'ARBI',
     network: '42',
     address: '0xf36d7a74996e7def7a6bd52b4c2fe64019dada25',
     icon: 'https://offchainlabs.com/af7bc2292c93e5b9edd216461350b1bf.png',
@@ -113,7 +113,7 @@ export const core = new BurnerCore({
 // const exchange = new Exchange([new XDaiBridge(), new Uniswap('dai')]);
 const BurnerWallet = () =>
   <ModernUI
-    title="Arbitrum Wallet"
+    title="Arbitrum Burner Wallet"
     core={core}
   />
 

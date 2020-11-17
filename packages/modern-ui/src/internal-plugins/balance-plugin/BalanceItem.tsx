@@ -5,6 +5,7 @@ import { toBN } from 'web3-utils';
 import options from '../../options';
 import { networkIdToExplorerRoot } from "../../lib"
 import { ethers, utils } from 'ethers'
+import { useHistory } from "react-router-dom";
 
 const SPEED = 4; // The higher this number is, the slower the balance will refresh
 
@@ -24,7 +25,7 @@ const BalanceCard = styled.div`
   padding: 8px 16px 8px 8px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  min-width: 225px;
+  min-width: 180px;
   background: white;
   margin: ${() => options.balanceStyle === 'stack' ? '4px 0' : '16px 8px'};
   cursor: pointer;
@@ -38,12 +39,12 @@ const BalanceText = styled.div`
 `;
 
 const Value = styled.div`
-  font-size: 48px;
+  font-size: 26px;
   display: flex;
   justify-content: flex-end;
 
   & .digit {
-    width: 30px;
+    width: 18px;
     text-align: center;
   }
 `;
@@ -52,7 +53,7 @@ const AssetName = styled.div`
   font-size: 16px;
 `;
 const NetworkName = styled.div`
-  font-size: 16px;
+  font-size: 12px;
   position: left;
 `;
 
@@ -85,6 +86,7 @@ const getValue = (asset: Asset, balance?: string | null) => {
 };
 
 const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate, defaultAccount }) => {
+  
   const valueDiv = useRef<HTMLDivElement | null>(null);
 
   const value = getValue(asset, balance);
@@ -121,13 +123,12 @@ const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate, d
     updateNum();
     return () => void window.cancelAnimationFrame(req);
   }, [balance, asset, growthRate]);
-  const explorerRoot = networkIdToExplorerRoot(asset.network)
+  const history= useHistory()
   const handleClick = useCallback(()=>{
-    if (explorerRoot && defaultAccount){
-      window.location.pathname = "/send/" + asset.id
+    if (defaultAccount){
+      history.push("/send/" + asset.id)
     }
-    
-  },[asset])
+  },[asset, history, defaultAccount])
 
   return (
     <BalanceCard onClick={handleClick}>
