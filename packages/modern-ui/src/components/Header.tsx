@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { withBurner, BurnerContext } from '@burner-wallet/ui-core';
 import { SCAN_QR_DATAURI } from '../lib';
 import { BurnerTheme } from '../Template';
-
+import TweetButton from './Twitter/TweetButton'
 const styled = (_styled as ThemedStyledInterface<BurnerTheme>);
 
 const HeaderElement = styled.header`
@@ -71,7 +71,7 @@ const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => (
         <Subtitle>Forked From <a href="https://github.com/burner-wallet/burner-wallet-2" target="_blank">Burner Wallet</a></Subtitle>
       )}
     </TitleContainer>
-
+        <TweetButton account={defaultAccount}/>
     <RightSide>
       <HeaderAccount onClick={() => actions.navigateTo('/receive')}>
         {defaultAccount.substr(2, 8)}
