@@ -7,7 +7,7 @@ import useTwitter  from './useTwitter'
 const TweetLink = styled.a`
   position: relative;
   box-sizing: border-box;
-  padding: 8px;
+  padding: 7px;
   background-color: #1b95e0;
   color: #e5f9fb;
   font-weight: 500;
@@ -16,9 +16,9 @@ const TweetLink = styled.a`
   font-family: Helvetica;
   border-radius: 8px;
   margin-left: 5px;
-  font-size: 15px;
+  font-size: 13px;
   display: flex;
-
+  min-width: 112px;
 `
 const TweetButton = ({account}={account:""}) => {
   const handleClick = useTwitter(account)
