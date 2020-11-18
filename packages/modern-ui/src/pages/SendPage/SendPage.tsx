@@ -2,6 +2,8 @@ import React, { ChangeEvent, useState } from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import { withBurner, BurnerContext, DataProviders } from '@burner-wallet/ui-core';
 import { Asset, Account, SendData, AccountBalanceData } from '@burner-wallet/types';
+import {  NativeAsset, ERC20Asset } from '@burner-wallet/assets';
+
 import styled from 'styled-components';
 import AddressInputField from '../../components/AddressInputField';
 import AssetSelector from '../../components/AssetSelector';
@@ -128,14 +130,16 @@ const MessageField = styled.div`
 
 const { AccountBalance } = DataProviders;
 
-type SendPageProps = BurnerContext & RouteComponentProps<{ to?: string }>;
+type SendPageProps = BurnerContext & RouteComponentProps<{ to?: string, assetid?: string }>;
 
 const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match }) => {
   const initialAssetId = match.params.assetid
   const initialAsset = initialAssetId && assets.find((asset)=> initialAssetId.toLowerCase() === asset.id.toLowerCase() )  
   const [to, setTo] = useState(location.state && location.state.to || '');
   const [account, setAccount] = useState<Account | null>(null);
-  const [asset, setAsset] = useState(initialAsset || assets[0]);
+  const [_asset, setAsset] = useState(initialAsset || assets[0]);
+  const asset = _asset as (ERC20Asset | NativeAsset)
+
   const [val, setVal] = useState<{ value: string; maxVal: string | null }>({ value: '0', maxVal: null });
   const [message, setMessage] = useState('');
 
@@ -205,7 +209,7 @@ const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match
                     Max
                   </MaxButton>
                   <MessageField>
-                    <h5>{asset.name === 'ETH' ? 'ETH (native)':<span>Token Address: <a target="_blank" href={explorerRoot + "address/" + asset.address }>{asset.address}</a> </span>  }</h5>
+                    <h5>{asset instanceof NativeAsset ? 'ETH (native)':<span>Token Address: <a target="_blank" href={explorerRoot + "address/" + asset.address }>{asset.address}</a> </span>  }</h5>
                   </MessageField>
                   <AssetSelector
                     selected={asset}

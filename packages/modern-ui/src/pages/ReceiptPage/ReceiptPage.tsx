@@ -9,6 +9,7 @@ import Page from '../../components/Page';
 import LineItem from '../../components/LineItem';
 const { TransactionDetails } = DataProviders;
 import { networkIdToExplorerRoot } from "../../lib"
+import { ERC20Asset, NativeAsset } from '@burner-wallet/assets';
 
 
 interface MatchParams {
@@ -41,7 +42,8 @@ const ReceiptPage: React.FC<RouteComponentProps<MatchParams> & BurnerContext> = 
             </section>
           );
         }
-        const [asset] = assets.filter((_asset: Asset) => _asset.id === tx.asset);
+        const [_asset] = assets.filter((_asset: Asset) => _asset.id === tx.asset);
+        const asset = _asset as (ERC20Asset | NativeAsset)
         const explorerRoot = networkIdToExplorerRoot(asset.network)
         const amtValue = asset
           ? `${asset.getDisplayValue(tx.value!)} ${asset.name}`

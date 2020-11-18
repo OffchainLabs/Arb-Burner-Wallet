@@ -31,3 +31,16 @@ export const networkIdToExplorerRoot =(networkId?: string) =>{
       return ""
   }
 }
+
+export const networkIdToName = (networkId: string)=>{
+  switch (networkId) {
+    case "152709604825713":
+       return "ArbTestnet V2"
+    case "215728282823301":
+        return "ArbTestnet V1"    
+    case "42":
+        return "Kovan"            
+    default:
+      return networkId
+  }
+}

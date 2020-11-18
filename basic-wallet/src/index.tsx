@@ -13,32 +13,10 @@ import { BurnerConnectPlugin } from '@burner-wallet/burner-connect-wallet';
 import 'worker-loader?name=burnerprovider.js!./burnerconnect'; // eslint-disable-line import/no-webpack-loader-syntax
 
 
-const networkIdToName = (networkId: string)=>{
-  switch (networkId) {
-    case "152709604825713":
-       return "ArbTestnet V2"
-    case "215728282823301":
-        return "ArbTestnet V1"    
-    case "42":
-        return "Kovan"            
-    default:
-      return networkId
-  }
-}
 
 
-class NativeAssetExt extends NativeAsset {
-  networkName()  {
-      return networkIdToName(this.network)
-  }
-}
 
-class ERC20AssetExt extends ERC20Asset {
-  networkName()  {
-    return networkIdToName(this.network)
-  }
-}
-const arbethv2 = new NativeAssetExt({
+const arbethv2 = new NativeAsset({
   id: 'ETH_L2(v2)',
   name: 'ETH',
   network: '152709604825713',
@@ -46,7 +24,7 @@ const arbethv2 = new NativeAssetExt({
   icon: 'https://static.burnerfactory.com/icons/eth.svg'
 })
 
-const arbethv1 = new NativeAssetExt({
+const arbethv1 = new NativeAsset({
   id: 'ETH_L2(v1)',
   name: 'ETH',
   network: '215728282823301',
@@ -54,7 +32,7 @@ const arbethv1 = new NativeAssetExt({
   icon: 'https://static.burnerfactory.com/icons/eth.svg'
 })
 
-const koveth = new NativeAssetExt({
+const koveth = new NativeAsset({
   id: 'ETH_L1',
   name: 'ETH',
   network: '42',
@@ -62,7 +40,7 @@ const koveth = new NativeAssetExt({
   icon: 'https://static.burnerfactory.com/icons/eth.svg',
 })
 
-const arbarbiv2 = new ERC20AssetExt({
+const arbarbiv2 = new ERC20Asset({
     id: 'ARBI_L2(v2)',
     name: 'ARBI',
     network: '152709604825713',
@@ -70,7 +48,7 @@ const arbarbiv2 = new ERC20AssetExt({
     icon: 'https://offchainlabs.com/af7bc2292c93e5b9edd216461350b1bf.png',
   });
 
-  const arbarbiv1= new ERC20AssetExt({
+  const arbarbiv1= new ERC20Asset({
     id: 'ARBI_L2(v1)',
     name: 'ARBI',
     network: '215728282823301',
@@ -80,7 +58,7 @@ const arbarbiv2 = new ERC20AssetExt({
   });
 
 
-  const kovarbi= new ERC20AssetExt({
+  const kovarbi= new ERC20Asset({
     id: 'ARBI_L1',
     name: 'ARBI',
     network: '42',

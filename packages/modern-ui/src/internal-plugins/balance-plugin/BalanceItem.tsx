@@ -3,7 +3,7 @@ import { Asset } from '@burner-wallet/types';
 import styled from 'styled-components';
 import { toBN } from 'web3-utils';
 import options from '../../options';
-import { networkIdToExplorerRoot } from "../../lib"
+import { networkIdToExplorerRoot, networkIdToName } from "../../lib"
 import { ethers, utils } from 'ethers'
 import { useHistory } from "react-router-dom";
 
@@ -142,7 +142,7 @@ const BalanceItem: React.FC<BalanceItemProps> = ({ asset, balance, growthRate, d
           ))}
         </Value>
         <AssetName>{asset.name}</AssetName>
-        <NetworkName>{`(${asset.networkName()})`}</NetworkName>
+        <NetworkName>{`(${networkIdToName(asset.network)})`}</NetworkName>
 
       </BalanceText>
     </BalanceCard>

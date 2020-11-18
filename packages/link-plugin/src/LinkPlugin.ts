@@ -44,6 +44,9 @@ export default class LinksPlugin implements Plugin {
     const linkContract = this.getContract();
 
     const randomHash = web3.utils.sha3(Math.random().toString());
+    if (randomHash === null){
+      throw new Error("Could not compute sha3; returned null (????)")
+    }
     const randomWallet = web3.eth.accounts.create();
     console.log(randomHash, randomWallet);
     const sig = web3.eth.accounts.sign(randomHash, randomWallet.privateKey);
@@ -96,6 +99,9 @@ export default class LinksPlugin implements Plugin {
       { type: 'uint256', value: nonce.toString() },
       { type: 'address', value: LINK_XDAI_CONTRACT_ADDRESS },
     );
+    if (claimHash === null){
+      throw new Error("Could not compute soliditySha3; returned null (????)")
+    }
     const claimSig = web3.eth.accounts.sign(claimHash, claimKey).signature;
     return { claimHash, claimSig };
   }

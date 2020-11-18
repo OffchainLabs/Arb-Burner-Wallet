@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "install": "lerna bootstrap",
-    "build": "lerna run --ignore local-wallet --ignore basic-wallet build",
+    "build": "lerna run --ignore local-wallet build",
     "build:esm": "lerna exec --stream --parallel -- ../../node_modules/.bin/tsc --outDir dist/esm --module esnext --target esnext",
     "lint": "eslint '*/**/*.{js,ts,tsx}'",
     "start-basic": "lerna run --parallel start-basic",
