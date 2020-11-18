@@ -31,7 +31,15 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-size: 24px;
+
+
+
+  @media(max-width: 600px){
+    font-size: 16px;
+  }
+  @media(min-width: 601px){
+    font-size: 24px;
+  }
   margin: 0;
   cursor: pointer;
 `;
@@ -63,10 +71,17 @@ const MiniQRButton = styled.button`
 `;
 
 const ArbBurnerIcon = styled.img`
-  max-width: 30px;
-  max-height: 35px;
+
   width: auto;
   height: auto;
+  @media(max-width: 600px){
+    max-width: 24px;
+    max-height: 24px;
+  }
+  @media(min-width: 601px){
+    max-width: 30px;
+    max-height: 30px;
+  }
 `
 interface HeaderProps extends BurnerContext {
   title?: string;
