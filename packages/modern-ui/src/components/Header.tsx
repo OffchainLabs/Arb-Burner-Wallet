@@ -5,6 +5,8 @@ import { withBurner, BurnerContext } from '@burner-wallet/ui-core';
 import { SCAN_QR_DATAURI } from '../lib';
 import { BurnerTheme } from '../Template';
 import TweetButton from './Twitter/TweetButton'
+import { useHistory } from 'react-router-dom'
+
 const styled = (_styled as ThemedStyledInterface<BurnerTheme>);
 
 const HeaderElement = styled.header`
@@ -31,6 +33,7 @@ const TitleContainer = styled.div`
 const Title = styled.h1`
   font-size: 24px;
   margin: 0;
+  cursor: pointer;
 `;
 
 const Subtitle = styled.div`
@@ -69,10 +72,11 @@ interface HeaderProps extends BurnerContext {
   title?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => (
-  <HeaderElement>
-    <TitleContainer>
-      <Title style={{display: "flex"}}>   {title || 'Burner Wallet'} <ArbBurnerIcon src={"https://i.ibb.co/3SR5g5g/arburner.png"}/></Title>
+const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => {
+  const history = useHistory()
+  return <HeaderElement>
+    <TitleContainer >
+      <Title onClick={()=> history.push('/')} style={{display: "flex"}}>   {title || 'Burner Wallet'} <ArbBurnerIcon src={"https://i.ibb.co/3SR5g5g/arburner.png"}/></Title>
       {title && title !== 'Burner Wallet' && (
         <Subtitle>Forked From <a href="https://github.com/burner-wallet/burner-wallet-2" target="_blank">Burner Wallet</a></Subtitle>
       )}
@@ -90,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => (
       </Route>
     </RightSide>
   </HeaderElement>
-);
+};
 
 
 export default withBurner(Header);
