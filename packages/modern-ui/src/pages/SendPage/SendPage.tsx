@@ -8,6 +8,8 @@ import AssetSelector from '../../components/AssetSelector';
 import Button from '../../components/Button';
 import Page from '../../components/Page';
 import { utils } from 'ethers'
+import { networkIdToExplorerRoot } from "../../lib"
+
 const FormContainer = styled.div`
   flex-direction: column;
   flex: 1;
@@ -156,6 +158,7 @@ const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match
     }
     actions.send(sendProps);
   };
+  const explorerRoot = networkIdToExplorerRoot(asset.network)
 
   const canSend = to.length === 42 && to && parseFloat(value) > 0;
   return (
@@ -201,6 +204,9 @@ const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match
                   >
                     Max
                   </MaxButton>
+                  <MessageField>
+                    <h5>{asset.name === 'ETH' ? 'ETH (native)':<span>Token Address: <a target="_blank" href={explorerRoot + "address/" + asset.address }>{asset.address}</a> </span>  }</h5>
+                  </MessageField>
                   <AssetSelector
                     selected={asset}
                     assets={assets}

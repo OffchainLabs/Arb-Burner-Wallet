@@ -57,6 +57,7 @@ const ReceiptPage: React.FC<RouteComponentProps<MatchParams> & BurnerContext> = 
               <br/>
               <LineItem name={t('From')} value={<Address networkId={asset.network} address={tx.from!} />}/>
               <LineItem name={t('To')} value={<Address networkId={asset.network} address={tx.to!} />}/>
+              {"address" in asset ? <LineItem name={t('Token Address')} value={ <a href={explorerRoot + 'address/' + asset.address} target="_blank">{asset.address}</a>}/>: null }
               <LineItem name={t('Date')} value={date}/>
             </div>
 
