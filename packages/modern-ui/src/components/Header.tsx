@@ -59,6 +59,12 @@ const MiniQRButton = styled.button`
   outline: none;
 `;
 
+const ArbBurnerIcon = styled.img`
+  max-width: 30px;
+  max-height: 35px;
+  width: auto;
+  height: auto;
+`
 interface HeaderProps extends BurnerContext {
   title?: string;
 }
@@ -66,7 +72,7 @@ interface HeaderProps extends BurnerContext {
 const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => (
   <HeaderElement>
     <TitleContainer>
-      <Title style={{display: "flex"}}>   {title || 'Burner Wallet'}    <img width={35} src={"https://i.ibb.co/3SR5g5g/arburner.png"}/></Title>
+      <Title style={{display: "flex"}}>   {title || 'Burner Wallet'} <ArbBurnerIcon src={"https://i.ibb.co/3SR5g5g/arburner.png"}/></Title>
       {title && title !== 'Burner Wallet' && (
         <Subtitle>Forked From <a href="https://github.com/burner-wallet/burner-wallet-2" target="_blank">Burner Wallet</a></Subtitle>
       )}
