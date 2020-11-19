@@ -83,8 +83,8 @@ export const core = new BurnerCore({
     arbarbiv2,
      koveth, 
      kovarbi,
-     arbethv1,
-     arbarbiv1
+    //  arbethv1,
+    //  arbarbiv1
      ],
 });
 
