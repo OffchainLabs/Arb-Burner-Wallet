@@ -164,14 +164,13 @@ const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match
   };
   const explorerRoot = networkIdToExplorerRoot(asset.network)
 
-  const canSend = to.length === 42 && to && parseFloat(value) > 0;
+  const canSend = to.length === 42 && to && parseFloat(value) > 0;  
   return (
     <Page title={t('Send')}>
       <AccountBalance
         asset={asset}
         render={(data: AccountBalanceData | null) => {
-          const exceedsBalance = !!data
-            && parseFloat(value) > parseFloat(data.displayMaximumSendableBalance);
+          const exceedsBalance = !!(data && value && parseFloat(utils.parseEther(value).toString()) > parseFloat(data.balance));            
           return (
             <Wrapper>
               <FormContainer>
@@ -202,7 +201,7 @@ const SendPage: React.FC<SendPageProps> = ({ actions, assets, location, t, match
                   <MaxButton
                     onClick={() => {
                       if (data) {                        
-                        setValue(utils.formatEther(data.maximumSendableBalance), data.maximumSendableBalance);
+                        setValue(utils.formatEther(data.balance), data.balance);
                       }
                     }}
                   >
