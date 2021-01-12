@@ -27,7 +27,7 @@ const arbethv2 = new NativeAsset({
 const arbethv3 = new NativeAsset({
   id: 'ETH_L2(v3)',
   name: 'ETH',
-  network: '46116242285844',
+  network: '79377087078960',
   priceSymbol: 'ETH',
   icon: 'https://static.burnerfactory.com/icons/eth.svg'
 })
@@ -51,7 +51,7 @@ const arbarbiv2 = new ERC20Asset({
   const arbarbiv3= new ERC20Asset({
     id: 'ARBI_L2(v3)',
     name: 'ARBI',
-    network: '46116242285844',
+    network: '79377087078960',
     address: '0xf36d7a74996e7def7a6bd52b4c2fe64019dada25',
     icon: 'https://offchainlabs.com/af7bc2292c93e5b9edd216461350b1bf.png',
 
@@ -74,7 +74,7 @@ export const core = new BurnerCore({
     new InjectedGateway(),
     new InfuraGateway(process.env.REACT_APP_INFURA_KEY),
      new HTTPGateway('https://kovan2.arbitrum.io/rpc', '152709604825713'),
-     new HTTPGateway('https://kovan3.arbitrum.io/rpc', '46116242285844')
+     new HTTPGateway('https://kovan3.arbitrum.io/rpc', '79377087078960')
 
   ],
   // TODO use Sai
