@@ -23,9 +23,9 @@ const TweetLink = styled.a`
 const TweetButton = ({account}={account:""}) => {
   const handleClick = useTwitter(account)
   return (
-    <TweetLink target="_blank" onClick={handleClick}>
-      Request Tokens
-    </TweetLink>
+    <a target="_blank" href="https://faucet.arbitrum.io/" >
+      Token Faucet
+    </a>
   )
 }
 
