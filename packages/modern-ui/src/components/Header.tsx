@@ -97,6 +97,7 @@ const Header: React.FC<HeaderProps> = ({ defaultAccount, title, actions }) => {
       )}
     </TitleContainer>
         <TweetButton account={defaultAccount}/>
+        <a href="https://portal.arbitrum.io/" target="_blank">More Dapps</a>
     <RightSide>
       <HeaderAccount onClick={() => actions.navigateTo('/receive')}>
         {defaultAccount.substr(2, 8)}
